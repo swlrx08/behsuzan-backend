@@ -6,7 +6,7 @@ The `urlpatterns` list routes URLs to views. For more information please see:
 Examples:
 Function views
     1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+    2. Add a URL to urlpatterns:  path('', views. Home, name='home')
 Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
@@ -23,13 +23,12 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('Accounts.urls')),
-    path('products/', include('Products.urls')),
-    path('contact-us/', include('ContactUs.urls')),
-    path('about-us/', include('AboutUs.urls')),
-    path('news/', include('News.urls')),
-    path('gallery/', include('Gallery.urls')),
+    path('', include('Products.urls')),
+    # path('contact-us/', include('ContactUs.urls')),
+    # path('about-us/', include('AboutUs.urls')),
+    # path('news/', include('News.urls')),
+    # path('gallery/', include('Gallery.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('salar/api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='schema-ui'),
+    path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='schema-ui'),
 ]
-

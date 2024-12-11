@@ -33,7 +33,6 @@ class AccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    id = models.BigAutoField(primary_key=True)
     ROLE_CHOICES = (
         ('user', 'User'),
         ('admin', 'Admin'),
@@ -77,13 +76,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 
 class Admin(models.Model):
-    username = models.CharField(max_length=150, unique=True, verbose_name='Username')
-    password = models.CharField(max_length=128, verbose_name='Password')
+    username = models.CharField(max_length=150, unique=True, verbose_name='نام کاربری')
+    password = models.CharField(max_length=128, verbose_name='رمز غبور')
     is_active = models.BooleanField(default=True, verbose_name='Active Status')
 
     class Meta:
-        verbose_name = 'admin'
-        verbose_name_plural = 'admins'
+        verbose_name = 'ادمین'
+        verbose_name_plural = 'ادمین ها'
 
     def __str__(self):
         return self.username

@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'Accounts.User'
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -179,5 +180,5 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # System B's IP address with React port
     "http://192.168.85.88:3000",
-    "https://behsuzan.com/",
+    # "https://behsuzan.com/",
 ]

@@ -7,7 +7,7 @@ from Accounts.serializers import AdminSerializer, AdminLoginSerializer
 
 
 class AdminViewSet(viewsets.ModelViewSet):
-    queryset = Admin.objects.all().order_by("access_level")
+    queryset = Admin.objects.all()
     serializer_class = AdminSerializer
 
 

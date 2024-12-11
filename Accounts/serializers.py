@@ -10,5 +10,5 @@ class AdminLoginSerializer(serializers.Serializer):
 
 class AdminSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Admin  # Specify the model to be serialized
+        model = Admin
         fields = ['id', 'username', 'password']
