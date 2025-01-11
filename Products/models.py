@@ -1,8 +1,10 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 
 
 class Product(models.Model):
     title = models.CharField(max_length=50, verbose_name="عنوان")
+    short_description = models.CharField(max_length=200, verbose_name="توضیحات کوتاه")
     description = models.TextField(verbose_name="معرفی")
     category = models.CharField(
         max_length=20,
@@ -30,3 +32,16 @@ class Specification(models.Model):
 
     def __str__(self):
         return f"{self.key}: {self.value}"
+
+
+class ProductImages(models.Model):
+    images = models.ImageField(upload_to="uploads/products/images/", null=True, blank=True)
+    product = models.ForeignKey(Product, related_name="p_images", on_delete=models.SET_NULL, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def vehicle_image(self):
+        return mark_safe("< img src='%s' width='50' height='50' />" % self.images)
+
+    class Meta:
+        verbose_name = "Product Image"
+        verbose_name_plural = "Products Images"

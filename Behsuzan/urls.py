@@ -24,11 +24,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('Accounts.urls')),
     path('', include('Products.urls')),
-    # path('contact-us/', include('ContactUs.urls')),
-    # path('about-us/', include('AboutUs.urls')),
-    # path('news/', include('News.urls')),
-    # path('gallery/', include('Gallery.urls')),
+    path('contact-us/', include('ContactUs.urls')),
+    path('about-us/', include('AboutUs.urls')),
+    path('news/', include('News.urls')),
+    path('gallery/', include('Gallery.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
     path('api/schema/swagger/', SpectacularSwaggerView.as_view(url_name='schema'), name='schema-ui'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

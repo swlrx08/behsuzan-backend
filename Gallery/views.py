@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
+from .models import Gallery
+from .serializers import GallerySerializer
 
-# Create your views here.
+
+class GalleryImageViewSet(ModelViewSet):
+    queryset = Gallery.objects.all().order_by('-uploaded_at')
+    serializer_class = GallerySerializer

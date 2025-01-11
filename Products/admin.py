@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Specification
+from .models import Product, Specification, ProductImages
 
 
 # تعریف inline برای مشخصات محصول
@@ -11,12 +11,17 @@ class SpecificationInline(admin.TabularInline):  # یا admin.StackedInline بر
     verbose_name_plural = "مشخصات"
 
 
+class ProductImagesInline(admin.TabularInline):
+    model = ProductImages
+    extra = 4  # Number of empty slots to add more images
+
+
 # تعریف تنظیمات پنل مدیریت محصول
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'category', 'created_at')
     list_filter = ('category',)
-    search_fields = ('title','id')
+    search_fields = ('title', 'id')
     ordering = ('-created_at',)
     date_hierarchy = 'created_at'
-    inlines = [SpecificationInline]  # اضافه کردن مشخصات به صفحه محصول
+    inlines = [SpecificationInline, ProductImagesInline]  # اضافه کردن مشخصات به صفحه محصول

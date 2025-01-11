@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
+
 from .models import Product, Specification
 from .serializers import ProductSerializer, SpecificationSerializer, ProductGetSerializer
 from django_filters.rest_framework import DjangoFilterBackend
@@ -10,10 +12,11 @@ class SpecificationViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.prefetch_related('specifications').all()
+    queryset = Product.objects.prefetch_related('specifications', 'p_images').all().order_by("created_at")
     serializer_class = ProductSerializer
-    filter_backends = [DjangoFilterBackend]
+    filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['category']
+    search_fields = ['title']
 
     def get_serializer_class(self):
         if self.request.method in ['GET']:
