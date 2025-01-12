@@ -1,8 +1,8 @@
 from rest_framework import viewsets
 from rest_framework.filters import SearchFilter
 
-from .models import Product, Specification
-from .serializers import ProductSerializer, SpecificationSerializer, ProductGetSerializer
+from .models import Product, Specification, ProductImages
+from .serializers import ProductSerializer, SpecificationSerializer, ProductGetSerializer, ProductImagesSerializer
 from django_filters.rest_framework import DjangoFilterBackend
 
 
@@ -25,3 +25,8 @@ class ProductViewSet(viewsets.ModelViewSet):
             return ProductSerializer
 
         return super().get_serializer_class()
+
+
+class ProductImagesViewSet(viewsets.ModelViewSet):
+    queryset = ProductImages.objects.all().order_by("-id")
+    serializer_class = ProductImagesSerializer

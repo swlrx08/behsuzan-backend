@@ -16,11 +16,11 @@ class ProductImagesSerializer(serializers.ModelSerializer):
 
 class ProductSerializer(serializers.ModelSerializer):
     specifications = SpecificationSerializer(many=True, required=True)  # مشخصات به صورت لیست JSON
-    p_images = ProductImagesSerializer(many=True, required=True)
+    p_images = ProductImagesSerializer(many=True, required=False)
 
     class Meta:
         model = Product
-        fields = ['title', 'description', 'category', 'short_description', 'specifications', 'p_images']
+        fields = ['id','title', 'description', 'category', 'short_description', 'specifications', 'p_images']
 
     def create(self, validated_data):
         # Extract specifications data
@@ -78,7 +78,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
 class ProductGetSerializer(serializers.ModelSerializer):
     specifications = SpecificationSerializer(many=True)  # مشخصات به صورت لیست JSON
+    p_images = ProductImagesSerializer(many=True)
 
     class Meta:
         model = Product
-        fields = ['id', 'title', 'description', 'category', 'short_description', 'specifications']
+        fields = ['id', 'title', 'description', 'category', 'short_description', 'specifications',  'p_images']
